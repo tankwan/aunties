@@ -1,0 +1,15 @@
+[
+    {"userPermission" : ["Super Admin", "Lender", "Accountant", "Client Creator", "Client Admin"]},
+    {"companyCorpType" : ["Sole-Proprietorship", "Partnership", "Limited Partnership (LP)", "Limited Liability Partnership (LLP)", "Company - Limited", "Company - Private Limited"]},
+    {"invoiceStatus" : ["Draft", "Awaiting Approval", "Sent", "Paid Partial", "Paid in Full", "Paid in Full with Discount", "Bad Debt", "Bad Debt Collected"]},
+    {"billStatus" : ["Draft", "Awaiting Approval", "Pending Payment", "Paid Partial", "Paid in Full", "Closed", "Paid after Closed", "Confirm Paid"]},
+    {"creditdebitnoteStatus" : ["Draft", "Awaiting Approval", "Sent", "Closed", "Reconciled"]},
+    {"creditdebitnoteType" : ["Credit Note (Payable)", "Debit Note (Receivable)", "Other"]},
+    {"bankaccountType" : ["Saving", "Current", "Credit Card", "Other"]},
+    {"accountingCodeOptions" : ["Assets - Accounts Receivable", "Assets - Cash and Equivalents", "Assets - Inventory", "Liability - GST Tax Liability", "Revenue - Sales", "Expenses - Sales Discount", "Expenses - Cost of Goods Sold", "Expenses - Bad Debt Expense"]},
+    {"countryOptions" : ["Singapore","Malaysia", "TBD1"]},
+    {"currencyOptions" : ["SGD","MYR","TBD1"]},
+    {"industryOptions" : ["Manufacturing","Business Services", "TBD1"]},
+    {"taxOptions" :["GST 7%","GST Waived", "TBD1"]},
+    {"testing":"tested"}
+]

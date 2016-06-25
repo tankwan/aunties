@@ -1,0 +1,4 @@
+[
+  {"reminder":true,"beforeDays":7, "afterDays": 5, "companyId":1},
+  {"reminder":false,"beforeDays":7, "afterDays": 5, "companyId":2}
+]

@@ -1,0 +1,40 @@
+{
+  "development": {
+    "username": null,
+    "password": null,
+    "database": "auntie",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres",
+    "logging": false,
+    "define": {
+      "underscored": true,
+      "underscoredAll": true
+    }
+  },
+  "test": {
+    "username": null,
+    "password": null,
+    "database": "auntie_test",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres",
+    "logging": false,
+    "define": {
+      "underscored": true,
+      "underscoredAll": true
+    }
+  },
+  "production": {
+    "username": "update me",
+    "password": "update me",
+    "database": "update me",
+    "host": "update me",
+    "dialect": "update me",
+    "logging": false,
+    "define": {
+      "underscored": true,
+      "underscoredAll": true
+    }
+  }
+}
