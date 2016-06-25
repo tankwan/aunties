@@ -4,24 +4,16 @@ var path = require('path')
 var models = require(path.join(__dirname, '../../models/index'));
 var logger = require('../../logger');
 
-function createNewDeliveryStatusDraft (req, res) {
-  // return models.DeliveryStatus.findAll({
-  //   where:{
-  //     deliveryId: req.params.deliveryId,
-  //   }
-  // })
-  // .then(function(deliveryStatus) {
-  //   return models.Delivery.find({
-  //     where:{
-  //       id: deliveryStatus.deliveryId,
-  //       deliveryId: req.user.deliveryId
-  //     },
-  //     include: [models.DeliveryRow, models.DeliveryStatus]
-  //   }).then(function(delivery) {
-  //     return res.json(delivery)
-  //   })
-  // })
-  // .catch(respondWithError(res, 500));
+function createReceivedStatus (req, res) {
+  return models.DeliveryStatus.create({
+    status: "received by user",
+    deliveryId: req.params.deliveryId,
+    userId: req.user.id
+  })
+  .then(function(deliveryStatus) {
+      return res.json("Thank you!")
+    })
+  .catch(respondWithError(res, 500));
 }
 
 
@@ -38,5 +30,5 @@ function respondWithError(res, statusCode){
 }
 
 module.exports = {
-  createNewDeliveryStatusDraft: createNewDeliveryStatusDraft
+  createReceivedStatus: createReceivedStatus
 }

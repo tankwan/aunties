@@ -31,8 +31,8 @@ router.route('/api/deliveries')
 
 //=============== Updating delivery status for an delivery ========================
 //
-// router.route('/api/deliveries/:deliveryId/draft')
-//   .post(deliveryStatusesController.createNewDeliveryStatusDraft)
+router.route('/api/deliveries/:deliveryId/received')
+  .post(deliveryStatusesController.createReceivedStatus)
 
 
 
