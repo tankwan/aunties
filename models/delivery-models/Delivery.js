@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     time: {
       type: DataTypes.STRING,
-      field: 'due_date'
+      field: 'time'
     },
   }, {
     classMethods: {

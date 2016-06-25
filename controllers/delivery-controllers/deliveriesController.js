@@ -62,10 +62,19 @@ function postDelivery (req, res) {
       }).then(function(user){
         user.password = "redacted"
         reply.user = user
-        res.json(reply)
+        models.Delivery.create({
+          packageId:req.body.packageId,
+          date: req.body.date,
+          time: req.body.time,
+          userId: user.id
+        })
+        .then(function(delivery){
+          res.json(reply)
+        })
       })
     })
   })
+
 
   // .then(function(address){
   //   return models.User.findAll({})
