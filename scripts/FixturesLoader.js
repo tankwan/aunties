@@ -1,9 +1,8 @@
 process.env.NODE_ENV = 'development'
 var logger = require('../logger')
-var createCompanies = require('../fixtures/CompanyFixtures')
+var createAvailabilities = require('../fixtures/AvailabilityFixtures')
 var createUsers     = require('../fixtures/UserFixtures')
-var createInvoices  = require('../fixtures/InvoiceFixtures')
-var createInvoiceRows = require('../fixtures/InvoiceRowFixtures')
+var createDeliveries  = require('../fixtures/DeliveryFixtures')
 
 var models = require("../models");
 
@@ -11,10 +10,8 @@ var models = require("../models");
 var fixtures = {}
 
 models.sequelize.sync()
-.then(function(){ return createCompanies(fixtures) })
 .then(function(){ return createUsers(fixtures) })
-.then(function(){ return createInvoices(fixtures) })
-.then(function(){ return createInvoiceRows(fixtures) })
+// .then(function(){ return createAvailabilities(fixtures) })
 
 .then(function(){
   logger.info({fixtures: Object.keys(fixtures)})

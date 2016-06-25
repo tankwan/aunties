@@ -11,18 +11,16 @@ var FixturePromises = function(fixtures){
   promises.push(
     models.Availability.create(
       {
-        "name": "Saga Peak",
-        "availabilityReg": "123A456",
-        "address": "123 Main Street",
-        "phone": "+65 9876 2342",
-        "country": "Singapore",
-        "currency": "SGD",
-        "fyEndDate": "2014-12-31",
-        "incorpDate": "2014-05-12",
-        "corpType": "Partnership"
+        "date": "2016-06-26",
+        "tentotwelve": true,
+        "twelvetotwo": true,
+        "twotofour": false,
+        "fourtosix": false,
+        "sixtoeight": false,
+        "userId": 1
       }
     ).then(function(created){
-      fixtures.SagaPeak = created
+      fixtures.CXChuaAval = created
     })
     .catch(function(err) { logger.error({err: err}) })
   )
@@ -30,18 +28,16 @@ var FixturePromises = function(fixtures){
   promises.push(
     models.Availability.create(
       {
-        "name": "Tratar",
-        "availabilityReg": "654321",
-        "address": "321 Down Street",
-        "phone": "+65 2232 3232",
-        "country": "Singapore",
-        "currency": "SGD",
-        "fyEndDate": "2014-12-31",
-        "incorpDate": "2012-05-12",
-        "corpType": "Availability - Private Limited"
+        "date": "2016-06-26",
+        "tentotwelve": false,
+        "twelvetotwo": false,
+        "twotofour": true,
+        "fourtosix": true,
+        "sixtoeight": true,
+        "userId": 2
       }
     ).then(function(created){
-      fixtures.Tratar = created
+      fixtures.EuwenDingAval = created
     })
     .catch(function(err) { logger.error({err: err}) })
   )

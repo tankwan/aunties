@@ -5,77 +5,69 @@ var logger = require('../logger')
 var FixturePromises = function(fixtures){
   var promises = []
 
-  promises.push(fixtures.SagaPeak.createUser(
+  promises.push(models.User.create(
       {
-        "firstName": "Ted",
+        "firstName": "CX",
         "lastName": "Chua",
-        "email": "cx@sagapeak.com",
+        "email": "chua.cheng.xun@gmail.com",
         "phone": "+65 9067 8318",
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
-        "permission": "Super Admin"
+        "address": "38 Lor 5 Toa Payoh",
+        "postcode": 310038,
       }
     )
-    .then(function(created){ fixtures.TedChua = created })
+    .then(function(created){ fixtures.CXChua = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(fixtures.Tratar.createUser(
+  promises.push(models.User.create(
       {
-        "firstName": "CM",
-        "lastName": "Chau",
-        "email": "cm@tratar.com",
-        "phone": "1212 3242",
+        "firstName": "Euwen",
+        "lastName": "Ding",
+        "email": "euwending2007@u.northwestern.edu",
+        "phone": "+65 9815 4117",
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
-        "permission": "Client Admin",
+        "address": "29 Lor 5 Toa Payoh",
+        "postcode": 310029,
       }
     )
-    .then(function(created){ fixtures.CmChau = created })
+    .then(function(created){ fixtures.EuwenDing = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(fixtures.Tratar.createUser(
+  promises.push(models.User.create(
       {
-        "firstName": "Amen",
-        "lastName": "Lee",
-        "email": "al@tratar.com",
-        "phone": "1341 4234",
-        "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
-        "permission": "Client Admin",
-      }
-    )
-    .then(function(created){ fixtures.AmenLee = created })
-    .catch(function(err) { logger.error({err: err}) })
-  )
-
-  promises.push(fixtures.SagaPeak.createUser(
-      {
-        "firstName": "Saga",
+        "firstName": "Tony",
         "lastName": "Tan",
-        "email": "st@sagapeak.com",
-        "phone": "1341 4234",
+        "email": "t@tonyktan.com",
+        "phone": "+65 9683 1445",
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
-        "permission": "Client Admin",
+        "address": "72 Lor 5 Toa Payoh",
+        "postcode": 310072,
+      }
+    )
+    .then(function(created){ fixtures.TonyTan = created })
+    .catch(function(err) { logger.error({err: err}) })
+  )
+
+  promises.push(models.User.create(
+      {
+        "firstName": "KX",
+        "lastName": "Sim",
+        "email": "kwangxiong@gmail.com",
+        "phone": "+65 9171 7959",
+        "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
+        "address": "55 Lor 5 Toa Payoh",
+        "postcode": 310055,
       }
     )
     .then(function(created){ fixtures.SagaTan = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(fixtures.SagaPeak.createUser(
-      {
-        "firstName": "Newbird",
-        "lastName": "Tan",
-        "email": "newbird@sagapeak.com",
-        "phone": "1341 4234",
-        "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
-        "permission": "Accountant",
-      }
-    )
-    .then(function(created){ fixtures.NewbirdTan = created })
-    .catch(function(err) { logger.error({err: err}) })
-  )
-
   return Promise.all(promises)
 }
+
+// 53 Lor 5 Toa Payoh, 310053
 
 module.exports = FixturePromises
