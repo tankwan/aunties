@@ -1,0 +1,28 @@
+p {
+  font-size: 16px;
+}
+
+.mastfoot .inner {
+    padding: 15px;
+}
+
+@media (min-width: 768px){
+  .masthead {
+      position: static;
+  }
+
+  .mastfoot {
+      position: static;
+  }
+
+  .cover {
+      padding: 20px 20px 0 20px;
+  }
+}
+
+.dialoguesecond, .imgsecond, .buttongroupsecond,
+.dialoguethird, .imgthird, .buttongroupthird,
+.dialoguefourth, .imgfourth, .buttongroupfourth,
+.dialoguefifth, .imgfifth, .buttongroupfifth {
+  display: none;
+}

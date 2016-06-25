@@ -1,0 +1,25 @@
+p {
+  font-size: 16px;
+}
+
+.mastfoot .inner {
+    padding: 15px;
+}
+
+@media (min-width: 768px){
+  .masthead {
+      position: static;
+  }
+
+  .mastfoot {
+      position: static;
+  }
+
+  .cover {
+      padding: 20px 20px 0 20px;
+  }
+}
+
+.auntiebuttongroup {
+  display: none;
+}
