@@ -67,21 +67,6 @@ var AuthMiddleware = {
     })
   },
 
-  rejectIfNoCompanyPermissions(req, res, next){
-    if (req.method === 'OPTIONS') return next();
-
-    if(req.user.permission === "Client Admin" || req.user.permission === "Super Admin" || req.user.permission === "Accountant"){
-      logger.info({user: req.user}, "User has client admin permissions.");
-      next()
-    } else {
-      logger.error({user: req.user}, "User does not have client admin permissions.");
-      return res.status(403).json({
-        success: false,
-        message: 'You do not have company admin permission'
-      })
-    }
-  },
-
   rejectIfNoAdminPermissions(req, res, next){
     if (req.method === 'OPTIONS') return next();
 

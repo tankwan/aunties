@@ -8,7 +8,6 @@ var methodOverride = require('method-override'); //used to manipulate POST
 
 //Reference to individual controller files
 var usersController     = require('../controllers/usersController');
-var companiesController     = require('../controllers/companiesController');
 
 // Not used since this is an API that runs on the server, where each request has to be authenticated
 // function authenticatedUser(req, res, next){
@@ -17,9 +16,6 @@ var companiesController     = require('../controllers/companiesController');
 //     res.redirect('/login');
 // }
 
-//=============== Routes for Company ========================
-router.route('/companyregistration')
-  .post(companiesController.postCompanyRegistration)
 
 //=============== Routes for Users  ========================
 router.route('/signup')

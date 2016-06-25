@@ -16,10 +16,9 @@ if (config.use_env_variable) {
 
 
 // Add new models here
-db['Company'] = sequelize['import']('./Company')
-db['Invoice'] = sequelize['import']('./invoice-models/Invoice')
-db['InvoiceRow'] = sequelize['import']('./invoice-models/InvoiceRow')
-db['InvoiceStatus'] = sequelize['import']('./invoice-models/InvoiceStatus')
+db['Availability'] = sequelize['import']('./Availability')
+db['Delivery'] = sequelize['import']('./delivery-models/Delivery')
+db['DeliveryStatus'] = sequelize['import']('./delivery-models/DeliveryStatus')
 db['User'] = sequelize['import']('./User')
 
 

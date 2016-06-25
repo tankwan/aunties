@@ -97,8 +97,7 @@ app.use('/admin', AuthMiddleware.rejectIfNoToken,
 
 app.use('/api', AuthMiddleware.rejectIfNoToken,
                 AuthMiddleware.rejectUnverifiableToken,
-                AuthMiddleware.rejectIfTokenExpired,
-                AuthMiddleware.rejectIfNoCompanyPermissions)
+                AuthMiddleware.rejectIfTokenExpired)
 
 app.use(function(error, request, response, next) {
   // Check type of error
@@ -114,10 +113,10 @@ app.use(function(error, request, response, next) {
 // *** ROUTING  *** //
 // **************** //
 var registrationRoutes = require('./routes/registration.js');
-var invoiceRoutes = require('./routes/invoice.js');
+var deliveryRoutes = require('./routes/delivery.js');
 
 app.use(registrationRoutes);
-app.use(invoiceRoutes);
+app.use(deliveryRoutes);
 
 
 module.exports = app;

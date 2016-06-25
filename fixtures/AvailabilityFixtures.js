@@ -9,10 +9,10 @@ var FixturePromises = function(fixtures){
   var promises = []
 
   promises.push(
-    models.Company.create(
+    models.Availability.create(
       {
         "name": "Saga Peak",
-        "companyReg": "123A456",
+        "availabilityReg": "123A456",
         "address": "123 Main Street",
         "phone": "+65 9876 2342",
         "country": "Singapore",
@@ -28,17 +28,17 @@ var FixturePromises = function(fixtures){
   )
 
   promises.push(
-    models.Company.create(
+    models.Availability.create(
       {
         "name": "Tratar",
-        "companyReg": "654321",
+        "availabilityReg": "654321",
         "address": "321 Down Street",
         "phone": "+65 2232 3232",
         "country": "Singapore",
         "currency": "SGD",
         "fyEndDate": "2014-12-31",
         "incorpDate": "2012-05-12",
-        "corpType": "Company - Private Limited"
+        "corpType": "Availability - Private Limited"
       }
     ).then(function(created){
       fixtures.Tratar = created

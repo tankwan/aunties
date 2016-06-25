@@ -5,7 +5,7 @@ var logger = require('../logger')
 var FixturePromises = function(fixtures){
   var promises = []
 
-  promises.push(models.Invoice.create(
+  promises.push(models.Delivery.create(
       {
         "counterpartyName": "HMO for SagaPeak",
         "title": "Accounting Services",
@@ -18,7 +18,7 @@ var FixturePromises = function(fixtures){
         "subtotal": 100.00,
         "taxAmount": 7.00,
         "grandTotal": 107.00,
-        "comments": "Late issue of invoice",
+        "comments": "Late issue of delivery",
         "repeating": false,
         "issueDate": "2016-05-30",
         "dueDate": "2016-06-30",
@@ -29,11 +29,11 @@ var FixturePromises = function(fixtures){
         "counterpartyId": fixtures.SagaPeakCpHmo.id
       }
     )
-    .then(function(created){ fixtures.InvoiceSagaPeakHmo1 = created })
+    .then(function(created){ fixtures.DeliverySagaPeakHmo1 = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(models.Invoice.create(
+  promises.push(models.Delivery.create(
       {
         "counterpartyName": "HMO for SagaPeak",
         "title": "Accounting Services",
@@ -46,7 +46,7 @@ var FixturePromises = function(fixtures){
         "subtotal": 200.00,
         "taxAmount": 14.00,
         "grandTotal": 214.00,
-        "comments": "Late issue of invoice",
+        "comments": "Late issue of delivery",
         "repeating": false,
         "issueDate": "2016-05-30",
         "dueDate": "2016-06-30",
@@ -57,11 +57,11 @@ var FixturePromises = function(fixtures){
         "counterpartyId": fixtures.SagaPeakCpHmo.id
       }
     )
-    .then(function(created){ fixtures.InvoiceSagaPeakHmo2 = created })
+    .then(function(created){ fixtures.DeliverySagaPeakHmo2 = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(models.Invoice.create(
+  promises.push(models.Delivery.create(
       {
         "counterpartyName": "HMO for SagaPeak",
         "title": "Accounting Services",
@@ -74,7 +74,7 @@ var FixturePromises = function(fixtures){
         "subtotal": 300.00,
         "taxAmount": 21.00,
         "grandTotal": 321.00,
-        "comments": "Late issue of invoice",
+        "comments": "Late issue of delivery",
         "repeating": false,
         "issueDate": "2016-05-30",
         "dueDate": "2016-06-30",
@@ -85,11 +85,11 @@ var FixturePromises = function(fixtures){
         "counterpartyId": fixtures.SagaPeakCpHmo.id
       }
     )
-    .then(function(created){ fixtures.InvoiceSagaPeakHmo3 = created })
+    .then(function(created){ fixtures.DeliverySagaPeakHmo3 = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 
-  promises.push(models.Invoice.create(
+  promises.push(models.Delivery.create(
       {
         "counterpartyName": "Ah Gong Bakery",
         "title": "Bread Sold",
@@ -102,7 +102,7 @@ var FixturePromises = function(fixtures){
         "subtotal": 50.00,
         "taxAmount": 3.50,
         "grandTotal": 53.50,
-        "comments": "Discount factored into invoice",
+        "comments": "Discount factored into delivery",
         "repeating": false,
         "issueDate": "2016-05-15",
         "dueDate": "2016-07-15",
@@ -113,7 +113,7 @@ var FixturePromises = function(fixtures){
         "counterpartyId": fixtures.TratarCpAhGongBakery.id
       }
     )
-    .then(function(created){ fixtures.InvoiceTratarAhGongBakery = created })
+    .then(function(created){ fixtures.DeliveryTratarAhGongBakery = created })
     .catch(function(err) { logger.error({err: err}) })
   )
 

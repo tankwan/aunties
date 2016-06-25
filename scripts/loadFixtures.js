@@ -6,7 +6,7 @@ var utils = require('../tests/TestUtils')
 
 // sequelize.sync({force:false})
 // .then
-utils.loadCompanyFixtures()
-.then(utils.loadUserFixtures)
-.then(utils.loadInvoiceFixtures)
+utils.loadUserFixtures()
+.then(utils.loadAvailabilityFixtures)
+.then(utils.loadDeliveryFixtures)
 .catch(console.log.bind(console))

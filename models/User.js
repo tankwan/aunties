@@ -13,21 +13,17 @@ module.exports = function(sequelize, DataTypes) {
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
     password: DataTypes.STRING,
-    permission: DataTypes.STRING,
+    address: DataTypes.STRING,
+    postcode: DataTypes.INTEGER,
+    wallet: DataTypes.FLOAT,
     random: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        User.belongsTo(models.Company, {
-          onDelete: "SET NULL",
-          onUpdate: "CASCADE",
-          foreignKey: {
-            name: 'companyId',
-            field: 'company_id',
-            allowNull: false
-          }
+        User.hasMany(models.Availability, {
+          foreignKey: {name:'userId', field:'user_id'}
         });
-        User.hasMany(models.InvoiceStatus, {
+        User.hasMany(models.Delivery, {
           foreignKey: {name:'userId', field:'user_id'}
         });
       }

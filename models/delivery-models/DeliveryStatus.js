@@ -1,21 +1,21 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var InvoiceStatus = sequelize.define('InvoiceStatus', {
+  var DeliveryStatus = sequelize.define('DeliveryStatus', {
     status: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
-        InvoiceStatus.belongsTo(models.Invoice, {
+        DeliveryStatus.belongsTo(models.Delivery, {
           onDelete: "SET NULL",
           onUpdate: "CASCADE",
           foreignKey: {
-            name: 'invoiceId',
-            field: 'invoice_id',
+            name: 'deliveryId',
+            field: 'delivery_id',
             allowNull: false
           }
         });
-        InvoiceStatus.belongsTo(models.User, {
+        DeliveryStatus.belongsTo(models.User, {
           onDelete: "SET NULL",
           onUpdate: "CASCADE",
           foreignKey: {
@@ -27,5 +27,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return InvoiceStatus;
+  return DeliveryStatus;
 };
