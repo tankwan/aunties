@@ -5,11 +5,14 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       field: 'date'
     },
-    tentotwelve: DataTypes.BOOLEAN,
-    twelvetotwo: DataTypes.BOOLEAN,
-    twotofour: DataTypes.BOOLEAN,
-    fourtosix: DataTypes.BOOLEAN,
-    sixtoeight: DataTypes.BOOLEAN,
+    tentotwelve: DataTypes.STRING,
+    twelvetotwo: DataTypes.STRING,
+    twotofour: DataTypes.STRING,
+    fourtosix: DataTypes.STRING,
+    sixtoeight: DataTypes.STRING,
+    latitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT,
+    address: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {

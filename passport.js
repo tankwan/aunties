@@ -3,6 +3,15 @@ var LocalStrategy = require('passport-local').Strategy;
 var models = require('./models/index');
 var bcrypt   = require('bcrypt-nodejs');
 var logger = require('./logger');
+var NodeGeocoder = require('node-geocoder');
+
+var options = {
+  provider: 'google',
+  httpAdapter: 'https', // Default
+  apiKey: 'AIzaSyCSwXYfgfeAdrD2hZQR0MYZijnfrhpOaqU', // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+var geocoder = NodeGeocoder(options);
 
 function encrypt(password){
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
@@ -32,7 +41,8 @@ module.exports = function(passport){
       usernameField: 'email',
       passwordField: 'password',
       passReqToCallback: true
-    }, function(req, email, password, done) {
+    },
+    function(req, email, password, done) {
         //Use sequelize to find the use with the local email
         models.User.find({
           where:{
@@ -40,18 +50,28 @@ module.exports = function(passport){
           }
         }).then(function(user) {
           if (user) return done(null, false, {'errorMessage': "This email is already registered"});
-
-          models.User.create({
+          return models.User.create({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             email: email,
             phone: req.body.phone,
             password: encrypt(password),
-            companyId: req.body.companyId,
-            permission: req.body.permission, //need to decide how to populate this?
+            address: req.body.address,
+            postcode: req.body.postcode,
+            wallet: 0,
             random: Math.round(Math.random()*1000000000)/1000000000,
-          }).then(function(user) {
-            return done(null, user);
+          })
+          .then(function(user) {
+            geocoder.geocode(user.address+', Singapore')
+            .then(function(res) {
+              console.log(res[0].formattedAddress)
+              user.updateAttributes({
+                latitude: res[0].latitude,
+                longitude: res[0].longitude
+              }).then(function(){
+                return done(null, user);
+              })
+            })
           })
         });
     }));

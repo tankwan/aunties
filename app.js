@@ -114,9 +114,11 @@ app.use(function(error, request, response, next) {
 // **************** //
 var registrationRoutes = require('./routes/registration.js');
 var deliveryRoutes = require('./routes/delivery.js');
+var availabilityRoutes = require('./routes/availability.js');
 
 app.use(registrationRoutes);
 app.use(deliveryRoutes);
+app.use(availabilityRoutes)
 
 
 module.exports = app;

@@ -14,6 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     phone: DataTypes.STRING,
     password: DataTypes.STRING,
     address: DataTypes.STRING,
+    latitude: DataTypes.FLOAT,
+    longitude: DataTypes.FLOAT,
     postcode: DataTypes.INTEGER,
     wallet: DataTypes.FLOAT,
     random: DataTypes.STRING

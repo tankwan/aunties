@@ -1,127 +1,105 @@
 var path = require('path')
 var models = require(path.join(__dirname, '../../models/index'));
 var logger = require('../../logger');
+var geolib = require('geolib')
+var NodeGeocoder = require('node-geocoder');
 
-function getAllAvailabilityDeliveries (req, res) {
-  // models.Delivery.findAll({
-  //   where:{
-  //     availabilityId: req.user.availabilityId
-  //   },
-  //   include: [models.DeliveryRow, models.CreditDebitNote,
-  //     {
-  //       model: models.DeliveryStatus,
-  //       limit:1,
-  //       order:'"updated_at" DESC',
-  //       required: false
-  //     }
-  //   ],
+var options = {
+  provider: 'google',
+  httpAdapter: 'https', // Default
+  apiKey: 'AIzaSyCSwXYfgfeAdrD2hZQR0MYZijnfrhpOaqU', // for Mapquest, OpenCage, Google Premier
+  formatter: null         // 'gpx', 'string', ...
+};
+var geocoder = NodeGeocoder(options);
+
+function postDelivery (req, res) {
+  var reply = {"result":null, "user":null}
+  var spots = {}, lat, long
+  geocoder.geocode(req.body.address+', Singapore')
+  .then(function(res){
+    lat = res[0].latitude
+    long = res[0].longitude
+    spots["requestadd"] = {
+      latitude: lat,
+      longitude: long
+    }
+    return console.log("done")
+  })
+  .then(function(){
+    models.Availability.findAll({
+      where:{
+        $or:[
+          {tentotwelve: req.body.tentotwelve},
+          {twelvetotwo: req.body.twelvetotwo},
+          {twotofour: req.body.twotofour},
+          {fourtosix: req.body.fourtosix},
+          {sixtoeight: req.body.sixtoeight},
+        ]
+      },
+    })
+    .then(function(availabilities){
+      const rowPromises = []
+      availabilities.forEach(function(availability){
+        lat = availability.latitude
+        long = availability.longitude
+        spots[availability.userId] = {
+          latitude: lat,
+          longitude: long
+        }
+        rowPromises.push(availability)
+      })
+      return Promise.all(rowPromises)
+    })
+    .then(function(){
+      return geolib.findNearest(spots['requestadd'], spots, 1)
+    })
+    .then(function(result){
+      reply.result = result
+      models.User.find({
+        where:{
+          id:result.key
+        },
+      }).then(function(user){
+        user.password = "redacted"
+        reply.user = user
+        res.json(reply)
+      })
+    })
+  })
+
+  // .then(function(address){
+  //   return models.User.findAll({})
   // })
-  // .then(function(deliveries){ res.json(deliveries) })
-  // .catch(respondWithError(res, 404, "Getting deliveries failed"));
-}
-
-function createNewDelivery (req, res) {
-  // var deliveryObj = req.body  // JSON has already parsed this into an object
-  // deliveryObj.availabilityId = req.user.availabilityId
-  // var deliveryId = null
-  //
-  // // Creating the delivery rows
-  // .then(function(delivery){
-  //   delivery.writtenOff = false
-  //   delivery.amountPendingReconciliation = delivery.grandTotal
-  //   deliveryId = delivery.id
-  //   const rowPromises = []
-  //   deliveryObj.DeliveryRows.forEach(function(row){
-  //     row.deliveryId = delivery.id
-  //     rowPromises.push(models.DeliveryRow.create(row))
-  //   })
-  //   return Promise.all(rowPromises)
-  // })
-  // // Creating the delivery status
-  // .then(function(result){
-  //   return models.DeliveryStatus.create({
-  //     status: "Draft",
-  //     userId: req.user.id,
-  //     deliveryId: deliveryId
-  //   })
-  // })
-  // // Grabbing and returning the created Delivery with associations loaded (include)
-  // .then(function(){
-  //   return models.Delivery.find({
-  //     where: {id: deliveryId},
-  //     include: [models.DeliveryRow, models.DeliveryStatus]
-  //   })
-  // })
-  // .then(function(fullDelivery){ res.json(fullDelivery) })
-  // .catch(respondWithError(res, 500, "Creating delivery failed"));
-}
-
-
-function getOneDelivery (req, res) {
-
-  // models.Delivery.find({
-  //   where:{
-  //     id: req.params.deliveryId,
-  //     availabilityId: req.user.availabilityId
-  //   },
-  //   include: [models.DeliveryRow, models.CreditDebitNote, models.DeliveryStatus],
-  // })
-  // .then(function(delivery){ res.json(delivery) })
-  // .catch(respondWithError(res, 404, "Getting delivery failed"));
-}
-
-
-function updateOneDelivery (req, res) {
-  // var deliveryAttributes = req.body  // JSON has already parsed this into an object
-  // var delivery;
-  //
-  // models.Delivery.find({
-  //   where: {
-  //     id: req.params.deliveryId,
-  //     availabilityId: req.user.availabilityId
-  //   }
-  // })
-  // .then(function(delivery){ return delivery.updateAttributes(deliveryAttributes) })
-  // .then(function(updated){
-  //   delivery = updated
-  //   return models.DeliveryRow.destroy({
-  //     where: {
-  //       deliveryId: delivery.id
-  //     }
+  // .then(function(users){
+  //   users.forEach(function(user){
+  //     row
   //   })
   // })
-  // .then(function(){ return createDeliveryRows(delivery, deliveryAttributes.DeliveryRows) })
-  // .then(function(){ return delivery.reload({
-  //     include: [models.DeliveryRow, models.DeliveryStatus]
-  //   })
-  // })
-  // .then(function(fullDelivery){ res.json(fullDelivery) })
-  // .catch(respondWithError(res, 404, "Updating delivery failed"));
+
+
+
+//   .then(function(users){
+//     const rowPromises = []
+//
+// geolib.getDistance(
+//   {latitude: 51.5103, longitude: 7.49347},
+//   {latitude: "51° 31' N", longitude: "7° 28' E"}
+// )
+//
+//     invoiceObj.InvoiceRows.forEach(function(row){
+//       row.invoiceId = invoice.id
+//       rowPromises.push(models.InvoiceRow.create(row))
+//     })
+//     return Promise.all(rowPromises)
+//     return
+//   })
+//   .then(function(deliveries){
+//     res.json(deliveries)
+//   })
+  .catch(respondWithError(res, 404, "Getting deliveries failed"));
 }
-
-
-function deleteOneDelivery (req, res) {
-  // models.Delivery.destroy({
-  //   where: {
-  //     id: req.params.deliveryId,
-  //     availabilityId: req.user.availabilityId
-  //   },
-  //   include: [models.DeliveryRow, models.DeliveryStatus]
-  // })
-  // .then(function(delivery){ res.json(delivery) })
-  // .catch(respondWithError(res, 500, "Deleting delivery failed"));
-}
-
 
 // Helpers
-function createDeliveryRows(delivery, rowAttributes){
-  const rowPromises = []
-  rowAttributes.forEach(function(row){
-    row.deliveryId = delivery.id
-    rowPromises.push(models.DeliveryRow.create(row))
-  })
-  return Promise.all(rowPromises)
-}
 
 function respondWithError(res, statusCode, msg){
   return function(err){
@@ -134,9 +112,5 @@ function respondWithError(res, statusCode, msg){
 }
 
 module.exports = {
-  getAllAvailabilityDeliveries: getAllAvailabilityDeliveries,
-  createNewDelivery: createNewDelivery,
-  getOneDelivery: getOneDelivery,
-  updateOneDelivery: updateOneDelivery,
-  deleteOneDelivery: deleteOneDelivery
+  postDelivery: postDelivery
 }

@@ -14,6 +14,8 @@ var FixturePromises = function(fixtures){
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
         "address": "38 Lor 5 Toa Payoh",
         "postcode": 310038,
+        "latitude":1.33534,
+        "longitude":103.85517
       }
     )
     .then(function(created){ fixtures.CXChua = created })
@@ -29,6 +31,8 @@ var FixturePromises = function(fixtures){
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
         "address": "29 Lor 5 Toa Payoh",
         "postcode": 310029,
+        "latitude": 1.33311,
+        "longitude":103.85376,
       }
     )
     .then(function(created){ fixtures.EuwenDing = created })
@@ -44,6 +48,8 @@ var FixturePromises = function(fixtures){
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
         "address": "72 Lor 5 Toa Payoh",
         "postcode": 310072,
+        "latitude": 1.33387,
+        "longitude": 103.85207
       }
     )
     .then(function(created){ fixtures.TonyTan = created })
@@ -59,6 +65,8 @@ var FixturePromises = function(fixtures){
         "password": "$2a$08$cnsDGsJwKCosSKJSpd.IEOZCRIf1OaPIqpoTzCWcPrjRhvtCes1aO",
         "address": "55 Lor 5 Toa Payoh",
         "postcode": 310055,
+        "latitude": 1.33739,
+        "longitude": 103.85120
       }
     )
     .then(function(created){ fixtures.SagaTan = created })

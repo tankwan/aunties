@@ -1,43 +1,28 @@
 var models = require('../models/index');
 
 
-function postAvailabilityRegistration(req, res) {
-  models.Availability.find({
-    where:{
-      availabilityReg: req.body.availabilityReg
-    }
+function createNewAvailability(req, res) {
+  models.Availability.create({
+    date: req.body.date,
+    tentotwelve: req.body.tentotwelve,
+    twelvetotwo: req.body.twelvetotwo,
+    twotofour: req.body.twotofour,
+    fourtosix: req.body.fourtosix,
+    sixtoeight: req.body.sixtoeight,
+    latitude: req.user.latitude,
+    longitude: req.user.longitude,
+    address: req.user.address,
+    userId: req.user.id
   }).then(function(availability) {
-    if (availability) {
-      return res.status(401).json({
-        success: false,
-        message: 'This availability has already been registered'
-      })
-    }
-    models.Availability.create({
-      name: req.body.name,
-      availabilityReg: req.body.availabilityReg,
-      address: req.body.address,
-      phone: req.body.phone,
-      country: req.body.country,
-      currency: req.body.currency,
-      fyEndDate: req.body.fyEndDate,
-      incorpDate: req.body.incorpDate,
-      corpType: req.body.corpType
-    }).then(function(availability) {
-      //client should redirect after this to the user sign-up page, holding the availability.id associated
-      return res.status(200).json({
-        success: true,
-        message: 'This availability has been succesfully registered',
-        availability: availability.name ,
-        id: availability.id
-      })
-    });
+    return res.status(200).json({
+      success: true,
+      message: 'This availability has been succesfully registered',
+    })
   });
 }
 
-
 module.exports = {
-  postAvailabilityRegistration:   postAvailabilityRegistration,
+  createNewAvailability:   createNewAvailability,
 
 
 }

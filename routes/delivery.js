@@ -16,27 +16,23 @@ var deliveryStatusesController     = require('../controllers/delivery-controller
 //=============== All deliveries of a company ========================
 
 router.route('/api/deliveries')
-  .get(deliveriesController.getAllAvailabilityDeliveries)
+  .post(deliveriesController.postDelivery)
 
-//=============== Create new delivery for a company ========================
-
-router.route('/api/deliveries')
-  .post(deliveriesController.createNewDelivery)
 
 //=============== For one specific delivery of a company ========================
 
-router.route('/api/deliveries/:deliveryId')
-  .get(deliveriesController.getOneDelivery)
-  .put(deliveriesController.updateOneDelivery)
-  .delete(deliveriesController.deleteOneDelivery)
+// router.route('/api/deliveries/:deliveryId')
+//   .get(deliveriesController.getOneDelivery)
+//   .put(deliveriesController.updateOneDelivery)
+//   .delete(deliveriesController.deleteOneDelivery)
 
 
 /////////////////////// INVOICE STATUS RELATED ROUTES ///////////////////////////
 
 //=============== Updating delivery status for an delivery ========================
-
-router.route('/api/deliveries/:deliveryId/draft')
-  .post(deliveryStatusesController.createNewDeliveryStatusDraft)
+//
+// router.route('/api/deliveries/:deliveryId/draft')
+//   .post(deliveryStatusesController.createNewDeliveryStatusDraft)
 
 
 

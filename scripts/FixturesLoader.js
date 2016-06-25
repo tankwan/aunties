@@ -11,7 +11,7 @@ var fixtures = {}
 
 models.sequelize.sync()
 .then(function(){ return createUsers(fixtures) })
-// .then(function(){ return createAvailabilities(fixtures) })
+.then(function(){ return createAvailabilities(fixtures) })
 
 .then(function(){
   logger.info({fixtures: Object.keys(fixtures)})

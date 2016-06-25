@@ -12,11 +12,14 @@ var FixturePromises = function(fixtures){
     models.Availability.create(
       {
         "date": "2016-06-26",
-        "tentotwelve": true,
-        "twelvetotwo": true,
-        "twotofour": false,
-        "fourtosix": false,
-        "sixtoeight": false,
+        "tentotwelve": 1,
+        "twelvetotwo": 0,
+        "twotofour": 0,
+        "fourtosix": 0,
+        "sixtoeight": 0,
+        "latitude":1.33534,
+        "longitude":103.85517,
+        "address": "38 Lor 5 Toa Payoh",
         "userId": 1
       }
     ).then(function(created){
@@ -29,11 +32,14 @@ var FixturePromises = function(fixtures){
     models.Availability.create(
       {
         "date": "2016-06-26",
-        "tentotwelve": false,
-        "twelvetotwo": false,
-        "twotofour": true,
-        "fourtosix": true,
-        "sixtoeight": true,
+        "tentotwelve": 1,
+        "twelvetotwo": 1,
+        "twotofour": 0,
+        "fourtosix": 0,
+        "sixtoeight": 0,
+        "latitude": 1.33311,
+        "longitude":103.85376,
+        "address": "29 Lor 5 Toa Payoh",
         "userId": 2
       }
     ).then(function(created){
