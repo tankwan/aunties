@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "gulp",
+    "start": "node ./server/bin/www",
     "fixtures:load": "node scripts/FixturesLoader.js"
   },
   "dependencies": {
